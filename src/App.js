@@ -21,9 +21,16 @@ function App() {
 
   return (
     <div className="App">
-<input type="text" value={value} onChange={onChange}/>
+<input type="text" value={value} className="form-control"
+       onChange={onChange}/>
+      <button className='btn btn-primary btn-lg'>Add to List</button>
       <ul>
-        {validation.map(el => <li key={el}>{el}</li>)}
+          <div className="text-5xl font-extrabold ...">
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+
+          {validation.map(el => <li key={el}>{el}</li>)}
+  </span>
+          </div>
       </ul>
     </div>
   );
