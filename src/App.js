@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
 
 function App() {
+  const [value,setValue] = useState('');
+  const [validation,setValidation] = useState([]);
+  const validate = (currentValue) => {
+    console.log(currentValue)
+    if (isNaN(Number(currentValue))) setValidation ([...new Set([...validation,'Only numbers'])])
+    else setValidation(validation.filter(el => el !== 'Only numbers'))
+  };
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+    validate(e.target.value)
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<input type="text" value={value} onChange={onChange}/>
+      <ul>
+        {validation.map(el => <li key={el}>Only numbers</li>)}
+      </ul>
     </div>
   );
 }
